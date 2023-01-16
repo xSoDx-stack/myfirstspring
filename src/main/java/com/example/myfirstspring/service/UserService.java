@@ -8,27 +8,27 @@ import com.example.myfirstspring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class UserService {
     @Autowired
     private UserRepo userRepo;
-    public UserEntity registration(UserEntity user) throws UserEmailAlreadyExistException {
+    public void registration(UserEntity user) throws UserEmailAlreadyExistException {
             if (userRepo.findByUserEmail(user.getUserEmail()) != null) {
                 throw new UserEmailAlreadyExistException("Пользователь с такой почтой уже зарегестрирован");
             }
-            return userRepo.save(user);
+        userRepo.save(user);
     }
-    public User getOne(String userMail) throws UserNotFoundException {
-        UserEntity userEmail = userRepo.findByUserEmail(userMail);
-        if (userEmail == null){
+    public User getOne(String userEmail) throws UserNotFoundException {
+        UserEntity userMail = userRepo.findByUserEmail(userEmail);
+        if (userMail == null){
             throw new UserNotFoundException("Пользователя с такой почтой не существует");
         }
-        return User.toModel(userEmail);
+        return User.toModel(userMail);
     }
-    public UUID delete(UUID id){
-        userRepo.deleteById(id);
-        return id;
+    public String delete(String Email){
+        if(userRepo.findByUserEmail(Email) == null)
+            return "Пользователя с такой почтой не существует";
+        userRepo.deleteByUserEmail(Email);
+        return "Пользователь с почтой " + Email + " успешно удалён";
     }
 }

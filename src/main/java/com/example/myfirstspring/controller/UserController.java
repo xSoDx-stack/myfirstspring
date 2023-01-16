@@ -38,12 +38,13 @@ public class UserController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable UUID id){
+
+    @DeleteMapping("/{Email}")
+    public ResponseEntity<?> deleteUser(@PathVariable String Email){
         try{
-            return ResponseEntity.ok(userService.delete(id));
+            return ResponseEntity.ok(userService.delete(Email));
         }catch (Exception e){
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body("Не удалось удалить элемент");
         }
     }
 }
