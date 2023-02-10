@@ -47,4 +47,5 @@ public class UserController {
             return ResponseEntity.badRequest().body("Не удалось удалить элемент");
         }
     }
+
 }

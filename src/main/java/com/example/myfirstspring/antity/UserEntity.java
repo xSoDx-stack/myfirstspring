@@ -1,10 +1,8 @@
 package com.example.myfirstspring.antity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +13,8 @@ public class UserEntity {
     private String userEmail;
     private String username;
     private String password;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<TodoEntity> todos;
 
     public UserEntity() {
     }
