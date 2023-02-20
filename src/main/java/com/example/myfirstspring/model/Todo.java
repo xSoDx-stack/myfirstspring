@@ -1,21 +1,23 @@
-package com.example.myfirstspring.antity;
+package com.example.myfirstspring.model;
 
-import jakarta.persistence.*;
+import com.example.myfirstspring.antity.TodoEntity;
+import com.example.myfirstspring.antity.UserEntity;
 
 import java.util.UUID;
 
-@Entity
-public class TodoEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+public class Todo {
     private UUID id;
     private String Title;
     private Boolean completed;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    public static Todo toModel(TodoEntity entity){
+        Todo model = new Todo();
+        model.setId(entity.getId());
+        model.setCompleted(entity.getCompleted());
+        model.setTitle(entity.getTitle());
+        return model;
+    }
 
-    public TodoEntity() {
+    public Todo() {
     }
 
     public UUID getId() {
@@ -41,13 +43,4 @@ public class TodoEntity {
     public void setCompleted(Boolean completed) {
         this.completed = completed;
     }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
 }
