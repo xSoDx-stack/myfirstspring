@@ -7,4 +7,5 @@ import java.util.UUID;
 
 
 public interface TodoRepo extends CrudRepository<TodoEntity, UUID> {
+    TodoEntity findByUserUserEmail (String Email);
 }

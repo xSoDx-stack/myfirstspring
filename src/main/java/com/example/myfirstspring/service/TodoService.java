@@ -8,8 +8,6 @@ import com.example.myfirstspring.model.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class TodoService {
     @Autowired
@@ -17,13 +15,13 @@ public class TodoService {
     @Autowired
     private UserRepo userRepo;
 
-    public Todo createTodo(TodoEntity todo, UUID userId){
-        UserEntity user = userRepo.findById(userId).get();
+    public Todo createTodo(TodoEntity todo, String userEmail){
+        UserEntity user = userRepo.findByUserEmail(userEmail);
         todo.setUser(user);
         return Todo.toModel(todoRepo.save(todo));
     }
-    public Todo completeTodo(UUID id){
-        TodoEntity todo = todoRepo.findById(id).get();
+    public Todo completeTodo(String email){
+        TodoEntity todo = todoRepo.findByUserUserEmail(email);
         todo.setCompleted(!todo.getCompleted());
         return Todo.toModel(todoRepo.save(todo));
 
