@@ -10,10 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TodoService {
+    private final TodoRepo todoRepo;
+    private final UserRepo userRepo;
     @Autowired
-    private TodoRepo todoRepo;
-    @Autowired
-    private UserRepo userRepo;
+    public TodoService(TodoRepo todoRepo, UserRepo userRepo){
+        this.todoRepo = todoRepo;
+        this.userRepo = userRepo;
+    }
 
     public Todo createTodo(TodoEntity todo, String userEmail){
         UserEntity user = userRepo.findByUserEmail(userEmail);

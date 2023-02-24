@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/todos")
 public class ToDoController {
+    private final TodoService todoService;
     @Autowired
-    private TodoService todoService;
+    public ToDoController (TodoService todoService){
+        this.todoService = todoService;
+    }
     @PostMapping
     public ResponseEntity<?> createTodo(@RequestBody TodoEntity todo,
                                      @RequestParam String UserEmail){
         try {
             return ResponseEntity.ok(todoService.createTodo(todo, UserEmail));
-
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
@@ -25,11 +27,8 @@ public class ToDoController {
     public ResponseEntity<?> completeTodo(@RequestParam String Email){
         try {
             return ResponseEntity.ok(todoService.completeTodo(Email));
-
-
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Произошла ошибка");
-
         }
     }
 }

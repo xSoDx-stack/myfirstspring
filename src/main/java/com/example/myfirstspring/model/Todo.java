@@ -1,7 +1,6 @@
 package com.example.myfirstspring.model;
 
 import com.example.myfirstspring.antity.TodoEntity;
-import com.example.myfirstspring.antity.UserEntity;
 
 import java.util.UUID;
 
@@ -16,14 +15,11 @@ public class Todo {
         model.setTitle(entity.getTitle());
         return model;
     }
-
     public Todo() {
     }
-
     public UUID getId() {
         return id;
     }
-
     public void setId(UUID id) {
         this.id = id;
     }

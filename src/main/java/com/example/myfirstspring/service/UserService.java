@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    private final UserRepo userRepo;
     @Autowired
-    private UserRepo userRepo;
+    public UserService(UserRepo userRepo){
+        this.userRepo = userRepo;
+    }
     public void registration(UserEntity user) throws UserEmailAlreadyExistException {
             if (userRepo.findByUserEmail(user.getUserEmail()) != null) {
-                throw new UserEmailAlreadyExistException("Пользователь с такой почтой уже зарегестрирован");
+                throw new UserEmailAlreadyExistException("Невозможно зарегестрировать пользователя");
             }
         userRepo.save(user);
     }

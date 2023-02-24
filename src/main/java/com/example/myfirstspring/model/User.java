@@ -19,7 +19,6 @@ public class User {
         model.setUserEmail(entity.getUserEmail());
         model.setTodos(entity.getTodos().stream().map(Todo::toModel).collect(Collectors.toList()));
         return model;
-
     }
 
     public User() {

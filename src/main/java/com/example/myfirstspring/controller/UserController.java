@@ -8,44 +8,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
+    private final UserService userService;
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService){
+        this.userService = userService;
+    }
 
     @PostMapping
-    public ResponseEntity<?> registration(@RequestBody UserEntity user){
+    public ResponseEntity<String> registration(@RequestBody UserEntity user){
         try {
             userService.registration(user);
               return ResponseEntity.ok("Пользователь успешно сохранён");
         }catch(UserEmailAlreadyExistException e){
             return ResponseEntity.badRequest().body(e.getMessage());
-        }catch(Exception e){
-            return ResponseEntity.badRequest().body("Error");
+        }catch(Exception e) {
+            return ResponseEntity.badRequest().body("Ошибка запроса");
         }
     }
     @GetMapping
-    public ResponseEntity<?> getOneUser(@RequestParam String userMail) {
+    public ResponseEntity<String> getOneUser(@RequestParam String userMail) {
         try{
-            return ResponseEntity.ok(userService.getOne(userMail));
+            ResponseEntity.ok(userService.getOne(userMail));
+            return ResponseEntity.ok("Пользователь найден \n"
+                    + userService.getOne(userMail).getUserEmail() + "\n"
+                    + userService.getOne(userMail).getUsername() + "\n"
+            );
         }catch (UserNotFoundException e){
             return ResponseEntity.badRequest().body(e.getMessage());
-
         }catch (Exception e){
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body("Ошибка запроса");
         }
     }
-
     @DeleteMapping("/{Email}")
     public ResponseEntity<?> deleteUser(@PathVariable String Email){
         try{
             return ResponseEntity.ok(userService.delete(Email));
         }catch (Exception e){
-            return ResponseEntity.badRequest().body("Не удалось удалить элемент");
+            return ResponseEntity.badRequest().body("Не удалось удалить пользователя");
         }
     }
-
 }
