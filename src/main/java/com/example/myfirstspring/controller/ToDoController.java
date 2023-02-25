@@ -24,9 +24,9 @@ public class ToDoController {
         }
     }
     @PutMapping
-    public ResponseEntity<?> completeTodo(@RequestParam String Email){
+    public ResponseEntity<?> completeTodo(@RequestParam String UserEmail){
         try {
-            return ResponseEntity.ok(todoService.completeTodo(Email));
+            return ResponseEntity.ok(todoService.completeTodo(UserEmail));
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }

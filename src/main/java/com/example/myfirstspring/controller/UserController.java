@@ -29,23 +29,19 @@ public class UserController {
         }
     }
     @GetMapping
-    public ResponseEntity<String> getOneUser(@RequestParam String userMail) {
+    public ResponseEntity<?> getOneUser(@RequestParam String UserEmail) {
         try{
-            ResponseEntity.ok(userService.getOne(userMail));
-            return ResponseEntity.ok("Пользователь найден \n"
-                    + userService.getOne(userMail).getUserEmail() + "\n"
-                    + userService.getOne(userMail).getUsername() + "\n"
-            );
+           return ResponseEntity.ok(userService.getOne(UserEmail));
         }catch (UserNotFoundException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Ошибка запроса");
         }
     }
-    @DeleteMapping("/{Email}")
-    public ResponseEntity<?> deleteUser(@PathVariable String Email){
+    @DeleteMapping("/{UserEmail}")
+    public ResponseEntity<?> deleteUser(@PathVariable String UserEmail){
         try{
-            return ResponseEntity.ok(userService.delete(Email));
+            return ResponseEntity.ok(userService.delete(UserEmail));
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Не удалось удалить пользователя");
         }

@@ -1,5 +1,6 @@
 package com.example.myfirstspring.model;
 
+import com.example.myfirstspring.antity.TodoEntity;
 import com.example.myfirstspring.antity.UserEntity;
 
 import java.util.List;
