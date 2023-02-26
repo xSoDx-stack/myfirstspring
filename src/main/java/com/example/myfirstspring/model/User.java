@@ -1,7 +1,6 @@
 package com.example.myfirstspring.model;
 
-import com.example.myfirstspring.antity.TodoEntity;
-import com.example.myfirstspring.antity.UserEntity;
+import com.example.myfirstspring.entity.UserEntity;
 
 import java.util.List;
 import java.util.UUID;

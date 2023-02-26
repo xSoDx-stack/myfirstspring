@@ -1,6 +1,6 @@
 package com.example.myfirstspring.controller;
 
-import com.example.myfirstspring.antity.UserEntity;
+import com.example.myfirstspring.entity.UserEntity;
 import com.example.myfirstspring.exceptions.UserEmailAlreadyExistException;
 import com.example.myfirstspring.exceptions.UserNotFoundException;
 import com.example.myfirstspring.service.UserService;

@@ -1,6 +1,6 @@
-package com.example.myfirstspring.antity.repository;
+package com.example.myfirstspring.repository;
 
-import com.example.myfirstspring.antity.TodoEntity;
+import com.example.myfirstspring.entity.TodoEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

@@ -1,9 +1,9 @@
 package com.example.myfirstspring.service;
 
-import com.example.myfirstspring.antity.TodoEntity;
-import com.example.myfirstspring.antity.UserEntity;
-import com.example.myfirstspring.antity.repository.TodoRepo;
-import com.example.myfirstspring.antity.repository.UserRepo;
+import com.example.myfirstspring.entity.TodoEntity;
+import com.example.myfirstspring.entity.UserEntity;
+import com.example.myfirstspring.repository.TodoRepo;
+import com.example.myfirstspring.repository.UserRepo;
 import com.example.myfirstspring.model.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

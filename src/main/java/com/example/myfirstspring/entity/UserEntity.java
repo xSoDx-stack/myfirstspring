@@ -1,4 +1,4 @@
-package com.example.myfirstspring.antity;
+package com.example.myfirstspring.entity;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "user")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -25,11 +26,16 @@ public class UserEntity {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    @NonNull
     public String getUserEmail() {
         return userEmail;
     }
 
-    public void setUserEmail(String userEmail) {
+    public void setUserEmail(@NonNull String userEmail) {
         this.userEmail = userEmail;
     }
 

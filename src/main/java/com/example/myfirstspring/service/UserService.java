@@ -1,7 +1,7 @@
 package com.example.myfirstspring.service;
 
-import com.example.myfirstspring.antity.UserEntity;
-import com.example.myfirstspring.antity.repository.UserRepo;
+import com.example.myfirstspring.entity.UserEntity;
+import com.example.myfirstspring.repository.UserRepo;
 import com.example.myfirstspring.exceptions.UserEmailAlreadyExistException;
 import com.example.myfirstspring.exceptions.UserNotFoundException;
 import com.example.myfirstspring.model.User;
@@ -22,11 +22,11 @@ public class UserService {
         userRepo.save(user);
     }
     public User getOne(String userEmail) throws UserNotFoundException {
-        UserEntity userMail = userRepo.findByUserEmail(userEmail);
-        if (userMail == null){
+        UserEntity user = userRepo.findByUserEmail(userEmail);
+        if (user == null){
             throw new UserNotFoundException("Пользователя с такой почтой не существует");
         }
-        return User.toModel(userMail);
+        return User.toModel(user);
     }
     public String delete(String Email){
         if(userRepo.findByUserEmail(Email) == null)

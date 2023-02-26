@@ -1,6 +1,6 @@
 package com.example.myfirstspring.controller;
 
-import com.example.myfirstspring.antity.TodoEntity;
+import com.example.myfirstspring.entity.TodoEntity;
 import com.example.myfirstspring.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

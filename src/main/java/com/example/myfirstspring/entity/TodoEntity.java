@@ -1,10 +1,11 @@
-package com.example.myfirstspring.antity;
+package com.example.myfirstspring.entity;
 
 import jakarta.persistence.*;
 
 import java.util.UUID;
 
 @Entity
+@Table(name = "todo")
 public class TodoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
