@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,6 +18,8 @@ public class UserEntity {
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<TodoEntity> todos;
+    @OneToMany(mappedBy = "user")
+    private List<RoleEntity> roles;
 
     public UserEntity() {
     }
@@ -61,5 +63,13 @@ public class UserEntity {
 
     public void setTodos(List<TodoEntity> todos) {
         this.todos = todos;
+    }
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
     }
 }

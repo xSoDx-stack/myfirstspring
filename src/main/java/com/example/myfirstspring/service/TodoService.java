@@ -27,7 +27,5 @@ public class TodoService {
         TodoEntity todo = todoRepo.findByUserUserEmail(email);
         todo.setCompleted(!todo.getCompleted());
         return Todo.toModel(todoRepo.save(todo));
-
-
     }
 }
